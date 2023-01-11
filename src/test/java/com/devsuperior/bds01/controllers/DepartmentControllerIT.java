@@ -20,6 +20,8 @@ public class DepartmentControllerIT {
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	
 	
 	@Test
 	public void findAllShouldReturnAllResourcesSortedByName() throws Exception {
