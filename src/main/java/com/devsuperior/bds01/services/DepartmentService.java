@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.bds01.dto.DepartmentDTO;
 import com.devsuperior.bds01.entities.Department;
@@ -18,6 +19,7 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository repository;
 
+    @Transactional(readOnly = true)
     public List<DepartmentDTO>findAll(){
         List<Department> departments = repository.findAll(Sort.by("name"));
         return departments.stream().map(department -> new ModelMapper().map(department, DepartmentDTO.class)).collect(Collectors.toList());
